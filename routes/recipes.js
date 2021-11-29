@@ -26,6 +26,11 @@ router.get('/:id', async (req, res) => {
     res.json(await controller.getRecipeById(req.params.id));
 });
 
+router.get('/:userCode', async (req, res) => {
+    console.log("check userCOde: " + req.params.userCode);
+    res.json(await controller.getRecipeByUserCode(req.params.userCode));
+});
+
 router.post('/', async(req,res)=>{
     console.log("Creating recipe...");
     var recipe = req.body;

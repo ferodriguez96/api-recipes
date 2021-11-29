@@ -14,6 +14,10 @@ async function getRecipeById(recipeId){
     return recipes.retrieveById(recipeId);
 }
 
+async function getRecipeByUserCode(userCode){    
+    return recipes.retrieveByUserCode(userCode);
+}
+
 async function createRecipe(recipe){
     let ingredients = getIngredients(recipe.ingredientsQuantity)
     recipe.ingredients = ingredients;
@@ -37,4 +41,4 @@ function getIngredients (ingredientsQuantity){
     return ingredients;
 }
 
-module.exports = {getRecipes,getRecipesByIngredients, getRecipeById, createRecipe, updateRecipe, deleteRecipe};
+module.exports = {getRecipes,getRecipesByIngredients, getRecipeById, getRecipeByUserCode, createRecipe, updateRecipe, deleteRecipe};

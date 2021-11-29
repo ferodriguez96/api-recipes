@@ -32,6 +32,15 @@ async function retrieveById(id){
     return recipes;
 }
 
+async function retrieveByUserCode(userCode){
+    const connectiondb = await conn.getConnection();
+    const recipes = await connectiondb
+                        .db(DATABASE)
+                        .collection(RECIPES)
+                        .find({ 'userCode': userCode });    
+    return recipes;
+}
+
 async function retrieveByIngredients(ingredients){
     const connectiondb = await conn.getConnection();
     const recipes = await connectiondb
@@ -63,4 +72,4 @@ async function deleteRecipe(id){
     return result;
 }
 
-module.exports = {create, retrieveAllRecipes, retrieveById, retrieveByIngredients, update, deleteRecipe};
+module.exports = {create, retrieveAllRecipes, retrieveById, retrieveByUserCode, retrieveByIngredients, update, deleteRecipe};
