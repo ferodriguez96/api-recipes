@@ -11,9 +11,13 @@ const controller = require('../controllers/recipes');
 router.get('/', async(req,res)=>{
     console.log("Geting all Recipes");
     var ingredients = req.query.ingredients;
+    var idList = req.query.idList;
     if(ingredients != undefined){
         console.log("recipes with this ingredients: " + ingredients);
         res.json(await controller.getRecipesByIngredients(ingredients));
+    }else if(idList != undefined){
+        console.log("recipes by multiple ids");
+        res.json(await controller.retrieveByMultipleIds(idList));
     }
     else{
         console.log("searching all recipes");

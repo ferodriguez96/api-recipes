@@ -10,6 +10,11 @@ async function getRecipesByIngredients(ingredients){
     return recipes.retrieveByIngredients(ingredientes);  
 }
 
+async function retrieveByMultipleIds(ids){  
+    let idList = ids.split(',');
+    return recipes.retrieveByMultipleIds(idList);  
+}
+
 async function getRecipeById(recipeId){    
     return recipes.retrieveById(recipeId);
 }
@@ -41,4 +46,4 @@ function getIngredients (ingredientsQuantity){
     return ingredients;
 }
 
-module.exports = {getRecipes,getRecipesByIngredients, getRecipeById, getRecipeByUserCode, createRecipe, updateRecipe, deleteRecipe};
+module.exports = {getRecipes,getRecipesByIngredients, getRecipeById, getRecipeByUserCode, retrieveByMultipleIds, createRecipe, updateRecipe, deleteRecipe};

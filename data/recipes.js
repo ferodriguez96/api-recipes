@@ -52,6 +52,20 @@ async function retrieveByIngredients(ingredients){
     return recipes;
 }
 
+async function retrieveByMultipleIds(idList){
+    var listOfObjectIds = [];
+    idList.forEach(element => {
+        listOfObjectIds.push(ObjectId(element));
+    });
+    
+    const connectiondb = await conn.getConnection();
+    const recipes = await connectiondb
+                        .db(DATABASE)
+                        .collection(RECIPES)
+                        .find({'_id': {'$in': listOfObjectIds}})
+                        .toArray();
+    return recipes;
+}
 
 async function update(id, recipe){
     let query = {'_id':ObjectId(id)};
@@ -73,4 +87,4 @@ async function deleteRecipe(id){
     return result;
 }
 
-module.exports = {create, retrieveAllRecipes, retrieveById, retrieveByUserCode, retrieveByIngredients, update, deleteRecipe};
+module.exports = {create, retrieveAllRecipes, retrieveById, retrieveByUserCode, retrieveByIngredients, retrieveByMultipleIds, update, deleteRecipe};
