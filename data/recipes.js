@@ -37,7 +37,8 @@ async function retrieveByUserCode(userCode){
     const recipes = await connectiondb
                         .db(DATABASE)
                         .collection(RECIPES)
-                        .find({ 'userCode': userCode });    
+                        .find({'userCode' : userCode})
+                        .toArray();    
     return recipes;
 }
 
